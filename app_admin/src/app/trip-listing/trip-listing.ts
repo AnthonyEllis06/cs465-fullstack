@@ -9,6 +9,8 @@ import { trips } from '../data/trips';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 
+import { Authentication } from '../services/authentication';
+
 
 @Component({
   selector: 'app-trip-listing',
@@ -24,6 +26,7 @@ export class TripListingComponent implements OnInit {
 
   constructor(private tripDataService: TripData,
               private router: Router,
+              private authentication: Authentication,
               private cdr: ChangeDetectorRef) { 
     console.log('trip-listing constructor'); 
   }
@@ -56,6 +59,11 @@ export class TripListingComponent implements OnInit {
   ngOnInit(): void {
     console.log('ngOnInit');
     this.getStuff();
+  }
+
+  public isLoggedIn()
+  {
+    return this.authentication.isLoggedIn();
   }
 
 }
